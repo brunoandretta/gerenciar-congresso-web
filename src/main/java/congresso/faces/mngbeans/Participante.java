@@ -15,7 +15,7 @@ public class Participante {
     private String rg;
     private Endereco endereco = new Endereco();   
     private String email;
-    private int telefone;
+    private Long telefone;
 
     /**
      * Creates a new instance of CadastroBean
@@ -96,14 +96,14 @@ public class Participante {
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 }

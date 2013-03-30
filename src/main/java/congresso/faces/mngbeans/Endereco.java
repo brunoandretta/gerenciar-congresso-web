@@ -11,12 +11,12 @@ package congresso.faces.mngbeans;
 public class Endereco {
        
     private String rua;
-    private int numero;
+    private Long numero;
     private String complemento;
     private String bairro;
     private String cidade;
     private String estado;
-    private int cep;
+    private Long cep;
 
     /**
      * Creates a new instance of EnderecoBean
@@ -41,14 +41,14 @@ public class Endereco {
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
@@ -111,14 +111,14 @@ public class Endereco {
     /**
      * @return the CEP
      */
-    public int getCep() {
+    public Long getCep() {
         return cep;
     }
 
     /**
      * @param CEP the CEP to set
      */
-    public void setCep(int cep) {
+    public void setCep(Long cep) {
         this.cep = cep;
     } 
 }

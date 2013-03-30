@@ -22,9 +22,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class cadastroSteps {
     
     private static final String BASE_URL = "http://localhost:8087";
-    private static final String CONTEXT = "/gerenciar-congresso-web";
+    private static final String CONTEXT = "/gerenciar-congresso-web/cadastro.xhtml";
     private static final String CONTEXT_URL = BASE_URL + CONTEXT;
-    private static final String padraoIdJSF = "j_idt9:";
+    private static final String padraoIdJSF = "form1:";
 
     private static WebDriver driver;
 
@@ -33,18 +33,35 @@ public class cadastroSteps {
         driver = new FirefoxDriver();
     }
 
-    @After
+    @After 
     public static void after() {
         driver.close();
+        driver.quit();
     }
     
     @When("^Eu preencho \"([^\"]*)\" com \"([^\"]*)\"$")
     public void fillIn(String fieldName, String value) throws Throwable {
-        WebElement we = driver.findElement(By.id(padraoIdJSF.concat(fieldName)));
+        String field = padraoIdJSF.concat(fieldName);
+        if(fieldName.equals("cpf") || fieldName.equals("cep")){
+           field = field.concat("_field");
+        }
+        WebElement we = driver.findElement(By.id(field));
         if (value.isEmpty()) {
             we.clear();
         } else {
-            we.sendKeys(value);
+            we.click();
+            we.sendKeys(value);            
+        }
+    }
+    
+    @When("^Eu seleciono a \"([^\"]*)\"ª opção do checkbox \"([^\"]*)\"$")
+    public void fillCheckBox(String value, String fieldName){
+        String field = padraoIdJSF.concat(fieldName).concat(":_").concat(value);
+        WebElement we = driver.findElement(By.id(field));
+        if(value.isEmpty()){
+            we.clear();
+        }else{
+            we.click();
         }
     }
 
@@ -61,6 +78,7 @@ public class cadastroSteps {
 
     @Then("^Eu poderia ver \"([^\"]*)\"$")
     public void shouldSee(String text) throws Throwable {
+        Thread.sleep(1000);
         String source = driver.getPageSource();
         Assert.assertTrue("Source: " + source, source.contains(text));
     }

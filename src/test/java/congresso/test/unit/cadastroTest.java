@@ -4,6 +4,7 @@
  */
 package congresso.test.unit;
 
+import congresso.faces.mngbeans.CadastroBean;
 import congresso.util.ValidaCPF;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,6 +22,7 @@ public class cadastroTest {
     private static String cpfInvalido = "11111111111";
     private static String cpfInvalido1 = "23232323232";
     private static String cpfValido = "08539403986";
+    private static String mensagemCadastro = "Cadastro feito com Sucesso!";
     
     public cadastroTest() {
     }
@@ -51,5 +53,6 @@ public class cadastroTest {
         Assert.assertEquals(false, ValidaCPF.isCPF(cpfInvalido));
         Assert.assertEquals(false, ValidaCPF.isCPF(cpfInvalido1));
         Assert.assertEquals(true, ValidaCPF.isCPF(cpfValido));        
-    }
+    }    
+
 }
