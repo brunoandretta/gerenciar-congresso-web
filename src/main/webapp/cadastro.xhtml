@@ -14,8 +14,7 @@
                 margin: 10px 0;
             }
             .iceOutLbl {
-                display: inline-block;
-                margin-left: 4px;
+                display: inline-block;                
                 width: 100px;
             }
             
@@ -30,97 +29,86 @@
     </ui:define>
     <ui:define name="metadata">
     </ui:define>
-
     <ui:define name="javascript">
     </ui:define>
-
+    <ui:define name="menu"></ui:define>
     <ui:define name="content">
-        <h:form id="form1">
+        <h:form id="form">
             <div class="titulo-form">Ficha de Cadastro</div>
-            <ice:panelGroup style="text-align: left; margin-bottom: 10px;"> Dados Cadastrais:
+            <ice:panelGroup style="text-align: left; margin-bottom: 10px"> Dados Cadastrais:
                 <ice:panelGroup>
-                    <ice:outputLabel for="nome" value="Nome*:"/>
-                    <ice:inputText id="nome" value="#{cadastroBean.participante.nome}" size="30"
+                    <ice:outputLabel style="margin-right: -50px" for="nome" value="Nome*:"/>
+                    <ice:inputText id="nome" value="#{cadastroBean.participante.nome}" size="52"                                   
                                    styleClass="ui-inputfield" label="Nome" maxlength="100" required="true"
                                    requiredMessage="o valor é necessário">                        
                     </ice:inputText>
                     <ice:message style="color: red" for="nome"/>
                 </ice:panelGroup>
                 <ice:panelGroup>
-                    <ice:outputLabel for="cpf" value="CPF*:"/>
+                    <ice:outputLabel style="margin-right: -50px" for="cpf" value="CPF*:"/>
                     <ace:maskedEntry id="cpf" value="#{cadastroBean.participante.cpf}"  mask="999999999-99" 
-                                     size="15" label="CPF" required="true" converter="#{cadastroBean.cpfConverter}"
+                                     size="11" label="CPF" required="true" converter="#{cadastroBean.cpfConverter}"
                                      requiredMessage="o valor é necessário">
                         <f:validator binding="#{cadastroBean.cpfValidator}"/>                       
                     </ace:maskedEntry>
                     <ice:message style="color: red" for="cpf"></ice:message>
-                </ice:panelGroup>
-                <ice:panelGroup>
-                    <ice:outputLabel for="rg" value="RG*:"/>
-                    <ice:inputText id="rg" value="#{cadastroBean.participante.rg}" size="30"
+                    <ice:outputLabel style="margin-right: -70px;margin-left: 67px" for="rg" value="RG*:"/>
+                    <ice:inputText id="rg" value="#{cadastroBean.participante.rg}" size="11"
                                    styleClass="ui-inputfield" label="RG" maxlength="100" required="true"
                                    requiredMessage="o valor é necessário">                        
                     </ice:inputText>
                     <ice:message style="color: red" for="rg"></ice:message>
-                </ice:panelGroup>
+                </ice:panelGroup>               
                 <ice:panelGroup>
-                    <ice:outputLabel for="rua" value="Endereco*:"/>
-                    <ice:inputText id="rua" value="#{cadastroBean.participante.endereco.rua}" size="30"
+                    <ice:outputLabel style="margin-right: -30px" for="rua" value="Endereco*:"/>
+                    <ice:inputText id="rua" value="#{cadastroBean.participante.endereco.rua}" size="25"
                          styleClass="ui-inputfield" label="Endereco" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message style="color: red" for="rua"></ice:message>
-                </ice:panelGroup>
-                <ice:panelGroup>
-                    <ice:outputLabel for="numero" value="Número*:"/>
-                    <ice:inputText id="numero" value="#{cadastroBean.participante.endereco.numero}" size="30"
+                    <ice:outputLabel style="margin-right: -40px" for="numero" value="Número*:"/>
+                    <ice:inputText id="numero" value="#{cadastroBean.participante.endereco.numero}" size="5"
                          styleClass="ui-inputfield" label="Numero" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message  style="color: red" for="numero"></ice:message>
-                </ice:panelGroup>
+                </ice:panelGroup>                
                 <ice:panelGroup>
                     <ice:outputLabel for="complemento" value="Complemento:"/>
-                    <ice:inputText id="complemento" value="#{cadastroBean.participante.endereco.complemento}" size="30"
+                    <ice:inputText id="complemento" value="#{cadastroBean.participante.endereco.complemento}" size="10"
                          styleClass="ui-inputfield" label="Complemento" maxlength="100" required="false"
                          requiredMessage="o valor é necessário"/>
-                </ice:panelGroup>
-                <ice:panelGroup>
-                    <ice:outputLabel for="bairro" value="Bairro:"/>
-                    <ice:inputText id="bairro" value="#{cadastroBean.participante.endereco.bairro}" size="30"
+                    <ice:outputLabel style="margin-right: -50px" for="bairro" value="Bairro:"/>
+                    <ice:inputText id="bairro" value="#{cadastroBean.participante.endereco.bairro}" size="16"
                          styleClass="ui-inputfield" label="Bairro" maxlength="100" required="false"
-                         requiredMessage="o valor é necessário"/>                   
-                </ice:panelGroup>
+                         requiredMessage="o valor é necessário"/> 
+                </ice:panelGroup>               
                 <ice:panelGroup>
-                    <ice:outputLabel for="cidade" value="Cidade*:"/>
-                    <ice:inputText id="cidade" value="#{cadastroBean.participante.endereco.cidade}" size="30"
+                    <ice:outputLabel style="margin-right: -50px" for="cidade" value="Cidade*:"/>
+                    <ice:inputText id="cidade" value="#{cadastroBean.participante.endereco.cidade}" size="20"
                          styleClass="ui-inputfield" label="Cidade" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message style="color: red" for="cidade"></ice:message>
-                </ice:panelGroup>
-                <ice:panelGroup>
-                    <ice:outputLabel for="estado" value="Estado*:"/>
-                    <ice:inputText id="estado" value="#{cadastroBean.participante.endereco.estado}" size="30"
+                    <ice:outputLabel style="margin-right: -50px" for="estado" value="Estado*:"/>
+                    <ice:inputText id="estado" value="#{cadastroBean.participante.endereco.estado}" size="16"
                          styleClass="ui-inputfield" label="Estado" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message style="color: red" for="estado"></ice:message>
                 </ice:panelGroup>
                 <ice:panelGroup>
-                    <ice:outputLabel for="cep" value="CEP*:"/>
+                    <ice:outputLabel style="margin-right: -50px" for="cep" value="CEP*:"/>
                     <ace:maskedEntry id="cep" value="#{cadastroBean.participante.endereco.cep}" mask="99999-999"
                                      size="10" required="true" label="CEP" converter="#{cadastroBean.cepConverter}"
                                      requiredMessage="o valor é necessário">
                     </ace:maskedEntry>
                     <ice:message style="color: red" for="cep"></ice:message>
-                </ice:panelGroup>
-                <ice:panelGroup>
-                    <ice:outputLabel for="telefone" value="Telefone Contato*:"/> 
-                    <ice:inputText id="telefone" value="#{cadastroBean.participante.telefone}" size="30"
+                    <ice:outputLabel style="width: 150px;margin-right: -40px" for="telefone" value="Telefone Contato*:"/> 
+                    <ice:inputText id="telefone" value="#{cadastroBean.participante.telefone}" size="10"
                          styleClass="ui-inputfield" label="Telefone" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message style="color: red" for="telefone"></ice:message>
-                </ice:panelGroup>
+                </ice:panelGroup>               
                 <ice:panelGroup>
-                    <ice:outputLabel for="email" value="E-mail:*"/>
-                    <ice:inputText id="email" value="#{cadastroBean.participante.email}" size="30"
+                    <ice:outputLabel style="margin-right: -50px" for="email" value="E-mail:*"/>
+                    <ice:inputText id="email" value="#{cadastroBean.participante.email}" size="53"
                          styleClass="ui-inputfield" label="E-mail" maxlength="100" required="true"
                          requiredMessage="o valor é necessário"/>
                     <ice:message style="color: red" for="email"></ice:message>
@@ -129,14 +117,16 @@
             <ice:panelGroup style="text-align: left; margin-bottom: 10px; color: black" >* Campos Obrigatórios</ice:panelGroup>
             <ice:panelGroup style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:
                 <ice:selectManyCheckbox value="#{cadastroBean.selecaoCursos}" id="selcursos" layout="pageDirection" 
-                                        required="true" requiredMessage="o valor é necessário" >
+                                        required="true" requiredMessage="o valor é necessário" partialSubmit="true"
+                                        valueChangeListener="#{cadastroBean.somarValor}">
                     <f:selectItems 
                         value="#{cadastroBean.curso.cursos}" 
                         var="curso"
                         itemValue="#{curso}"
-                        itemLabel="#{curso}"/>                   
-                    <ice:message style="color: red" for="selcursos" />                                      
+                        itemLabel="#{curso}" />                                       
+                    <ice:message style="color: red" for="selcursos" />                    
                 </ice:selectManyCheckbox>
+                <ice:outputText id="total" value="Valor #{cadastroBean.valor}"/>
             </ice:panelGroup>
             <ice:commandButton id="confirmar" value="Confirmar" action="#{cadastroBean.cadastroAction()}" />
             <ice:panelGroup style="font-size: large; color: green"> #{cadastroBean.mensagem}</ice:panelGroup>                        

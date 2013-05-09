@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
  *
  * @author Bruno
  */
-@RunWith(Cucumber.class)
-@Cucumber.Options(format={"pretty", "html:target/cucumber"})
+/*@RunWith(Cucumber.class)
+@Cucumber.Options(format={"pretty", "html:target/cucumber"})*/
 public class congressoTestIT {
     
 }

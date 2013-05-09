@@ -12,9 +12,9 @@
             <ui:insert name="styles"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
-            <link href="./css/default.css" rel="stylesheet" type="text/css" />
-            <link href="./css/cssLayout.css" rel="stylesheet" type="text/css" />
-            <link href="./css/inscricao.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/default.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/cssLayout.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/inscricao.css" rel="stylesheet" type="text/css" />
             <title>Cadastro Congresso Web</title>
         </h:head>
 
@@ -25,15 +25,40 @@
                     <td class="left_filler"/>
                     <td id="top">
                         <ui:insert name="top">
-                            <a href="http://www.ct.utfpr.edu.br" target="_blank"><img src="imagens/header.jpg" alt=""/></a>
+                           <a href="http://www.ct.utfpr.edu.br" target="_blank"><img src="${facesContext.externalContext.requestContextPath}/imagens/header.jpg" alt=""/></a>
                         </ui:insert>
                     </td>
                     <td class="right_filler"/>
                 </tr>
                 <tr>
                     <td class="left_filler"/>
+                    <td id="menu">
+                        <nav>
+                            <ul>
+                                <li><a href="index.xhtml"><span></span>Home</a></li>
+                                <li><a href="#"><span></span>Inscrição</a>
+                                    <ul>
+                                        <li><a href="cadastro.xhtml">Cadastrar</a></li>
+                                        <li><a href="#">Alterar</a></li>
+                                        <li><a href="#">Consultar</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span></span>Acesso Administrativo</a></li>                                
+                            </ul>
+                        </nav>
+                        <ui:insert name="menu">Menu</ui:insert>
+                    </td>
                     <td id="content">
                         <ui:insert name="content">Content</ui:insert>
+                    </td>
+                    <td class="right_filler"/>
+                </tr>
+                <tr id="bottom">
+                    <td class="left_filler"/>
+                    <td>
+                        <ui:insert name="bottom">
+                            <div class="bottom_content"></div>
+                        </ui:insert> 
                     </td>
                     <td class="right_filler"/>
                 </tr>

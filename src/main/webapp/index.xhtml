@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                template="./WEB-INF/templates/layout.xhtml">  
+       <ui:define name="styles">
+        <style type="text/css">
+            .titulo-form {
+                font-size: 14pt;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .iceOutLbl {
+                display: inline-block;
+                margin-left: 4px;
+                width: 100px;
+            }
+            
+            .icePnlGrp {
+                margin-top: 4px;
+            }
+            .iceMsgs {
+                color: red;    
+            }   
+            
+        </style>
+    </ui:define>
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="javascript">
+    </ui:define>
+    <ui:define name="menu">    
+    </ui:define>
+    <ui:define name="content">        
+        <h1>Congresso de Desenvolvedores Web</h1>
+        <h2 style="color: black; text-align: left;font-weight: bold;font-size: 13px">Informações Gerais</h2>
+        <h3 style="color: black; text-align: left; font-size: 12px">Objetivo</h3>
+        <p style="color: black; text-align: left;font-size: 12px">
+            O objetivo do sistema é auxiliar na cooperação entre os envolvidos do
+            estágio a fim de agilizar o processo de contratação de estágio pela empresa,
+            facilitar o gerenciamento dos estagiários pela universidade e orientar
+            os alunos que fazer ou irão fazer algum estágio.
+        </p>
+        <h3 style="color: black; text-align: left; font-size: 12px">Documentos Oficiais</h3>        
+        <h4 style="text-align: left">Documentos Interessantes</h4>
+        <p style="color: black; text-align: left;font-size: 12px">            
+            <a href="http://www.gerec.ct.utfpr.edu.br/estagioemprego/html/relatorios.html">
+                Documentos Gerais de Estágio UTFPR
+            </a><br/><br/>                    
+        </p>        
+        <h4 style="text-align: left">Documentos Estágio Interno</h4>
+        <p style="color: black; text-align: left;font-size: 12px">       
+            <a href="http://www.utfpr.edu.br/servidores/estagio-interno/documentos-estagio-interno">
+                Documentação Interna de Estágio UTFPR
+            </a><br/><br/>                       
+        </p>
+    </ui:define>  
+</ui:composition>
+

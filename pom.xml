@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsf.version>2.1.18</jsf.version>
-        <icefaces.version>3.2.0</icefaces.version>        
+        <icefaces.version>3.2.0</icefaces.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
 
@@ -162,7 +162,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <server>Apache Tomcat 7.0.34</server>
+                    <server>Apache Tomcat 7.0.39</server>
                     <url>http://localhost:8087/manager/text</url>                    
                     <update>true</update>
                     <port>8087</port>

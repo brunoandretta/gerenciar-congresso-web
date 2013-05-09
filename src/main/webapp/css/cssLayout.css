@@ -12,11 +12,28 @@ body {
     margin-right: auto;
 }
 
-#top, #bottom, #content {
+#top, #bottom {
     background-color: white;
     color: blue;
     width: 600px;
     padding: 0px 15px
+}
+
+#content {
+    background-color: white;
+    color: blue;
+    width: 470px;
+    padding: 0px 15px;
+    float: right    
+}
+
+#menu{
+    background-color: white;    
+    color: blue;
+    width: 130px;
+    padding: 0px 15px;
+    display: inline;
+    float: left;    
 }
 
 #bottom .bottom_content {

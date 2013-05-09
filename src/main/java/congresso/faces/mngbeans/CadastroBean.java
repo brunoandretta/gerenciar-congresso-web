@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ValueChangeEvent;
 
 
 /**
@@ -34,7 +35,7 @@ public class CadastroBean extends PageBean{
     
     public CadastroBean(){
         this.selecaoCursos = new ArrayList<String>();
-        this.valor = 0;
+        this.valor = valorParticipacao;
     }
 
     /**
@@ -109,8 +110,8 @@ public class CadastroBean extends PageBean{
      *
      * @return
      */
-    public void somarValor(){        
-        int quant = !this.selecaoCursos.isEmpty() ? this.selecaoCursos.size() : 0; 
+    public void somarValor(ValueChangeEvent event){        
+        int quant = (Integer) event.getNewValue();         
         this.valor = valorParticipacao + (quant*30);
         
     }
@@ -133,14 +134,14 @@ public class CadastroBean extends PageBean{
      * @return the cursos
      */
     public Curso getCurso() {
-        return cursos;
+        return getCursos();
     }
 
     /**
      * @param cursos the cursos to set
      */
     public void setCurso(Curso cursos) {
-        this.cursos = cursos;
+        this.setCursos(cursos);
     }
     
     public void cadastroAction(){
@@ -159,5 +160,47 @@ public class CadastroBean extends PageBean{
      */
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+        private String slidervalue;
+    	private String sliderStatus = "";
+	
+	public String getSliderStatus() {
+		return sliderStatus;
+	}
+	
+	public void slideStartListener(javax.faces.event.AjaxBehaviorEvent event) {
+		sliderStatus = "Sliding has been started.";
+	}
+	
+	public void slideEndListener(javax.faces.event.AjaxBehaviorEvent event) {
+		sliderStatus = "Sliding has been ended.";
+	}
+
+    /**
+     * @return the cursos
+     */
+    public Curso getCursos() {
+        return cursos;
+    }
+
+    /**
+     * @param cursos the cursos to set
+     */
+    public void setCursos(Curso cursos) {
+        this.cursos = cursos;
+    }
+
+    /**
+     * @return the slidervalue
+     */
+    public String getSlidervalue() {
+        return slidervalue;
+    }
+
+    /**
+     * @param slidervalue the slidervalue to set
+     */
+    public void setSlidervalue(String slidervalue) {
+        this.slidervalue = slidervalue;
     }
 }
