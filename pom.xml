@@ -15,9 +15,21 @@
         <jsf.version>2.1.18</jsf.version>
         <icefaces.version>3.2.0</icefaces.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <hibernate.core.version>4.1.9.Final</hibernate.core.version>
+        <hibernate.ehcache.version>${hibernate.core.version}</hibernate.ehcache.version>
+        <hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>
+        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
 
     <dependencies>
+        <dependency>
+           <!-- necessário para não causar conflito com o hibernate-jpamodelgen -->
+           <groupId>org.jboss.spec</groupId>
+           <artifactId>jboss-javaee-6.0</artifactId>
+           <version>1.0.0.Final</version>
+           <type>pom</type>
+           <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -78,7 +90,32 @@
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
             <version>${icefaces.version}</version>
-        </dependency>               
+        </dependency>
+                <!-- Dependências do Hibernate JPA -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.ehcache.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Necessário para gerar as classes JPA metamodel -->
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${hibernate.jpamodelgen.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
+            <type>jar</type>
+        </dependency>
+        <!-- Dependências do Hibernate JPA -->               
     </dependencies>
 
     <build>

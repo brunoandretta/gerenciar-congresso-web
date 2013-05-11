@@ -4,7 +4,7 @@
  */
 package congresso.test.unit;
 
-import congresso.faces.mngbeans.CadastroBean;
+import congresso.faces.mngbeans.InscricaoBean;
 import congresso.util.ValidaCPF;
 import org.junit.After;
 import org.junit.AfterClass;

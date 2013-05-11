@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/gerenciar-congresso-web"/>
+<Context antiJARLocking="true" path="/gerenciar-congresso-web">
+    <Resource auth="Container" driverClassName="org.postgresql.Driver" 
+              logAbandoned="true" maxActive="10" maxIdle="3" maxWait="10000" 
+              name="jdbc/congresso" password="${pgsql.congresso.password}" removeAbandoned="true" 
+              type="javax.sql.DataSource" url="jdbc:postgresql://dev.ct.utfpr.edu.br/aluno03" 
+              username="${pgsql.congresso.username}"/>
+</Context>
