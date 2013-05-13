@@ -6,6 +6,9 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:ace="http://www.icefaces.org/icefaces/components"
                 template="./WEB-INF/templates/layout.xhtml">  
+    <f:metadata>
+        <f:viewParam name="operacao" value="#{acessoBean.operacao}"/>
+    </f:metadata>
        <ui:define name="styles">
         <style type="text/css">
             .titulo-form {
@@ -39,18 +42,18 @@
             <h3 style="color: black; text-align: left; font-size: 12px">LOGIN</h3>
             <ice:panelGroup style="text-align: left">
             <ice:outputLabel style="margin-right: -50px;" for="cpf" value="CPF*:"/>
-              <ace:maskedEntry id="cpf" value="#{acessoAlterarBean.cpf}"  mask="999999999-99" 
-                              size="11" label="CPF" required="true" converter="#{acessoAlterarBean.cpfConverter}"
+              <ace:maskedEntry id="cpf" value="#{acessoBean.cpf}"  mask="999999999-99" 
+                              size="11" label="CPF" required="true" converter="#{acessoBean.cpfConverter}"
                               requiredMessage="o valor é necessário">
-                 <f:validator binding="#{acessoAlterarBean.cpfValidator}"/>                       
+                 <f:validator binding="#{acessoBean.cpfValidator}"/>                       
              </ace:maskedEntry><br/>           
                 <ice:outputLabel style="margin-right: -50px;" for="email" value="E-mail:*"/>
-                <ice:inputText id="email" value="#{acessoAlterarBean.email}" size="53"
+                <ice:inputText id="email" value="#{acessoBean.email}" size="53"
                       label="E-mail" maxlength="100" required="true"
                      requiredMessage="o valor é necessário"/>
                 <ice:message style="color: red" for="email"></ice:message>
             </ice:panelGroup>
-            <ice:commandButton  id="confirmar" value="Acessar" action="#{acessoAlterarBean.alterar()}" />
+            <ice:commandButton  id="confirmar" value="Acessar" action="#{acessoBean.alterar}" />
         </h:form>
     </ui:define>
 </ui:composition>

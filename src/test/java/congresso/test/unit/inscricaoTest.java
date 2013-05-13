@@ -17,14 +17,14 @@ import org.junit.Test;
  *
  * @author Bruno
  */
-public class cadastroTest {
+public class inscricaoTest {
     
     private static String cpfInvalido = "11111111111";
     private static String cpfInvalido1 = "23232323232";
     private static String cpfValido = "08539403986";
-    private static String mensagemCadastro = "Cadastro feito com Sucesso!";
+    private static String mensageminscricao = "inscricao feito com Sucesso!";
     
-    public cadastroTest() {
+    public inscricaoTest() {
     }
     
     @BeforeClass

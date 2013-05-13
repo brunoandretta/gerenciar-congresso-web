@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ISO-8859-1' ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -31,16 +31,16 @@
     </ui:define>
     <ui:define name="javascript">
     </ui:define>
-    <ui:define name="menu"></ui:define>
+    <ui:define name="menu"></ui:define>    
     <ui:define name="content">
         <h:form id="form">
-            <div class="titulo-form">Formulário</div>
+            <div class="titulo-form">#{texto['property.formulario']}</div>
             <ice:panelGroup style="text-align: left; margin-bottom: 10px"> Dados Cadastrais:
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -50px" for="nome" value="Nome*:"/>
                     <ice:inputText id="nome" value="#{inscricaoBean.participante.nome}" size="52"                                   
                                     label="Nome" maxlength="100" required="true"
-                                   requiredMessage="o valor é necessário">                        
+                                   requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                        
                     </ice:inputText>
                     <ice:message style="color: red" for="nome"/>
                 </ice:panelGroup>                
@@ -48,83 +48,82 @@
                     <ice:outputLabel style="margin-right: -50px" for="cpf" value="CPF*:"/>
                     <ace:maskedEntry id="cpf" value="#{inscricaoBean.participante.cpf}"  mask="999999999-99" 
                                      size="11" label="CPF" required="true" converter="#{inscricaoBean.cpfConverter}"
-                                     requiredMessage="o valor é necessário">
+                                     requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">
                         <f:validator binding="#{inscricaoBean.cpfValidator}"/>                       
                     </ace:maskedEntry>
                     <ice:message style="color: red" for="cpf"></ice:message>
                     <ice:outputLabel style="margin-right: -70px;margin-left: 67px" for="rg" value="RG*:"/>
                     <ice:inputText id="rg" value="#{inscricaoBean.participante.rg}" size="11"
                                     label="RG" maxlength="100" required="true"
-                                   requiredMessage="o valor é necessário">                        
+                                   requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                        
                     </ice:inputText>
                     <ice:message style="color: red" for="rg"></ice:message>
                 </ice:panelGroup>               
                 <ice:panelGroup>
-                    <ice:outputLabel style="margin-right: -30px" for="rua" value="Endereco*:"/>
+                    <ice:outputLabel style="margin-right: -30px" for="rua" value="#{texto['property.endereco']}*:"/>
                     <ice:inputText id="rua" value="#{inscricaoBean.participante.endereco}" size="25"
                           label="Endereco" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="rua"></ice:message>
-                    <ice:outputLabel style="margin-right: -40px" for="numero" value="Número*:"/>
+                    <ice:outputLabel style="margin-right: -40px" for="numero" value="#{texto['property.numero']}*:"/>
                     <ice:inputText id="numero" value="#{inscricaoBean.participante.numero}" size="5"
                           label="Numero" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message  style="color: red" for="numero"></ice:message>
                 </ice:panelGroup>                
                 <ice:panelGroup>
                     <ice:outputLabel for="complemento" value="Complemento:"/>
                     <ice:inputText id="complemento" value="#{inscricaoBean.participante.complemento}" size="10"
                           label="Complemento" maxlength="100" required="false"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:outputLabel style="margin-right: -50px" for="bairro" value="Bairro:"/>
                     <ice:inputText id="bairro" value="#{inscricaoBean.participante.bairro}" size="16"
                           label="Bairro" maxlength="100" required="false"
-                         requiredMessage="o valor é necessário"/> 
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/> 
                 </ice:panelGroup>               
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -50px" for="cidade" value="Cidade*:"/>
                     <ice:inputText id="cidade" value="#{inscricaoBean.participante.cidade}" size="20"
                           label="Cidade" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="cidade"></ice:message>
                     <ice:outputLabel style="margin-right: -50px" for="estado" value="Estado*:"/>
                     <ice:inputText id="estado" value="#{inscricaoBean.participante.estado}" size="16"
                           label="Estado" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="estado"></ice:message>
                 </ice:panelGroup>
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -50px" for="cep" value="CEP*:"/>
                     <ace:maskedEntry id="cep" value="#{inscricaoBean.participante.cep}" mask="99999-999"
                                      size="10" required="true" label="CEP" converter="#{inscricaoBean.cepConverter}"
-                                     requiredMessage="o valor é necessário">                         
+                                     requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                         
                     </ace:maskedEntry>
                     <ice:message style="color: red" for="cep"></ice:message>
                     <ice:outputLabel style="width: 150px;margin-right: -40px" for="telefone" value="Telefone Contato*:"/> 
                     <ice:inputText id="telefone" value="#{inscricaoBean.participante.telefone}" size="10"
                           label="Telefone" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="telefone"></ice:message>
                 </ice:panelGroup>               
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -50px" for="email" value="E-mail:*"/>
                     <ice:inputText id="email" value="#{inscricaoBean.participante.email}" size="53"
                           label="E-mail" maxlength="100" required="true"
-                         requiredMessage="o valor é necessário"/>
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="email"></ice:message>
                 </ice:panelGroup>
             </ice:panelGroup>
-            <ice:panelGroup style="text-align: left; margin-bottom: 10px; color: black" >* Campos Obrigatórios</ice:panelGroup>
-            <ice:panelGroup  rendered="#{inscricaoBean.cadastrar}" style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:                
+            <ice:panelGroup style="text-align: left; margin-bottom: 10px; color: black" >* Campos #{texto['property.obrigatorios']}</ice:panelGroup>
+            <ice:panelGroup  style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:                
                 <ace:dataTable id="data" var="curso" value="#{inscricaoBean.selecaoCurso}"
-                           rows="6">
+                               rows="6" rendered="#{inscricaoBean.cadastrar}">
                 <ace:column id="selecao">
                     <f:facet name="header">SELECIONE</f:facet>
-                    <ice:selectBooleanCheckbox value="#{inscricaoBean.checked[curso.idCurso]}" valueChangeListener="#{inscricaoBean.selecaoChanged(curso.idCurso)}" 
-                                               partialSubmit="true" immediate="true"/>                    
+                    <ice:selectBooleanCheckbox value="#{inscricaoBean.checked[curso.idCurso]}" partialSubmit="true" />                    
                 </ace:column>
                 <ace:column  id="descricao">
-                    <f:facet name="header">DESCRIÇÃO</f:facet>
+                    <f:facet name="header">#{texto['property.descricao']}</f:facet>
                     <ace:expansionToggler/>
                 </ace:column>              
                 <ace:column id="nome">
@@ -138,7 +137,7 @@
                     </ice:outputText>
                 </ace:column>
                 <ace:column id="horario">
-                    <f:facet name="header">HORÁRIO</f:facet>
+                    <f:facet name="header">#{texto['property.horario']}</f:facet>
                     <ice:outputText value="#{curso.horaInicio}-#{curso.horaFim}"/>                    
                 </ace:column>
                 <ace:column id="vagas">
@@ -146,7 +145,7 @@
                     #{curso.vagas}
                 </ace:column>
                 <ace:column id="valor">
-                    <f:facet name="header">PREÇO</f:facet>
+                    <f:facet name="header">#{texto['property.preco']}</f:facet>
                     <ice:outputText style="font-size: 9px" id="preco" value="#{curso.valor}">
                         <f:convertNumber type="currency" currencySymbol="R$"/>
                     </ice:outputText>                    
@@ -155,7 +154,7 @@
                     <ice:outputLabel style="width: 500px;text-align: left" id="out_descricao" value="#{curso.descricao}"/>
                 </ace:panelExpansion>
             </ace:dataTable>
-                <ice:outputFormat value="(VALOR TOTAL A PAGAR = R$ {0, number, 0.00})">
+                <ice:outputFormat rendered="#{inscricaoBean.cadastrar}" value="(VALOR TOTAL A PAGAR = R$ {0, number, 0.00})">
                     <f:param value="#{inscricaoBean.valorTotal}"/>
                 </ice:outputFormat>
             </ice:panelGroup>

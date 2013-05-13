@@ -26,10 +26,10 @@ import javax.persistence.Table;
 public class CursoParticipante implements Serializable {
     @EmbeddedId
     private CursoParticipantePK cursoParticipantePK;
-    @JoinColumn(name = "curso", referencedColumnName = "id_curso", insertable = false, updatable = false)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id_curso", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Curso curso;
-    @JoinColumn(name = "participante", referencedColumnName = "id_participante", insertable = false, updatable = false)
+    @JoinColumn(name = "id_participante", referencedColumnName = "id_participante", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Participante participante;
     

@@ -34,35 +34,43 @@
     <ui:define name="menu"></ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <div class="titulo-form">Consulta Cadastro</div>
-            <ace:dataTable id="data" var="cursos" value="#{consultaBean.listaCursos}" 
-                           rows="5" paginator="true" paginatorPosition="bottom">
-                                <ace:column  id="descricao">
-                 <f:facet name="header">DESCRIÇÃO</f:facet>
-                    <ace:expansionToggler/>
-                </ace:column>              
-                <ace:column id="nome">
+            <div class="titulo-form">Consulta inscricao</div>
+            <h3 style="color: black; text-align: left; font-size: 12px">Dados Cadastrais:</h3>
+            <ace:dataTable id="data_participante" var="p" value="#{consultaBean.participante}" 
+                           rows="5" paginator="true" paginatorPosition="bottom">                                 
+                <ace:column id="nome_p">
                     <f:facet name="header">NOME</f:facet>
-                    #{curso.nome}
+                    #{p.nome}
                 </ace:column>                
-                <ace:column id="dia">
-                    <f:facet name="header">DIA</f:facet>
-                    <ice:outputText id="data_curso" value="#{curso.dataCurso}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </ice:outputText>
+                <ace:column id="cpf">
+                    <f:facet name="header">CPF</f:facet>
+                    #{p.cpf}
                 </ace:column>
-                <ace:column id="horario">
-                    <f:facet name="header">HORÁRIO</f:facet>
-                    <ice:outputText value="#{curso.horaInicio}-#{curso.horaFim}"/>                    
-                </ace:column>
-                <ace:column id="vagas">
-                    <f:facet name="header">VAGAS</f:facet>
-                    #{curso.vagas}
-                </ace:column>
-                <ace:panelExpansion>
-                    <ice:outputLabel style="width: 500px;text-align: left" id="out_descricao" value="#{curso.descricao}"/>
-                </ace:panelExpansion>
+                <ace:column id="rg">
+                    <f:facet name="header">R.G.:</f:facet>
+                    #{p.rg}                   
+                </ace:column>           
             </ace:dataTable>
+            <h3 style="color: black; text-align: left; font-size: 12px">Alterar Dados:
+                <a href="acesso.xhtml?operacao=alterar">CLIQUE AQUI</a>
+            </h3><br/>
+            <h3 style="color: black; text-align: left; font-size: 12px">Cursos Inscritos:</h3>
+            <ace:dataTable id="data_curso" var="curso" value="#{consultaBean.listaCursos}">
+                <ace:column id="nome_c">
+                    <f:facet name='header'>NOME</f:facet>
+                            #{curso.nome}
+                </ace:column>
+                <ace:column id="dia">
+                    <f:facet name='header'>DIA</f:facet>
+                        <ice:outputText id="data_curso" value="#{curso.dataCurso}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </ice:outputText>
+                </ace:column>
+                <ace:column id="nome">
+                    <f:facet name='header'>#{texto['property.horario']}</f:facet>
+                            #{curso.horaInicio}-#{curso.horaFim}
+                </ace:column>
+           </ace:dataTable>
         </h:form>
     </ui:define>
 </ui:composition>

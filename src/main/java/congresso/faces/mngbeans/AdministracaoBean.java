@@ -20,7 +20,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class AdministracaoBean {
-    private List<Participante> listaParticipantes = new ArrayList<Participante>();
+    private List<CursoParticipante> listaParticipantes = new ArrayList<CursoParticipante>();
     
     public AdministracaoBean(){
     
@@ -29,27 +29,28 @@ public class AdministracaoBean {
     /**
      * @return the listaParticipantes
      */
-    public List<Participante> getListaParticipantes() {
+    public List<CursoParticipante> getListaParticipantes() {
         ParticipanteJpaController pjc = new ParticipanteJpaController();
-        listaParticipantes = pjc.findAll();
+        CursoParticipanteJpaController cpjc = new CursoParticipanteJpaController();
+        listaParticipantes = cpjc.findAll();               
         return listaParticipantes;
     }
 
     /**
      * @param listaParticipantes the listaParticipantes to set
      */
-    public void setListaParticipantes(List<Participante> listaParticipantes) {
+    public void setListaParticipantes(List<CursoParticipante> listaParticipantes) {
         this.listaParticipantes = listaParticipantes;
     }
     
-    public void alterar(Participante p){
-        ParticipanteJpaController pjc = new ParticipanteJpaController();
-        pjc.merge(p);
+    public void alterar(CursoParticipante p){
+        /*ParticipanteJpaController pjc = new ParticipanteJpaController();
+        pjc.merge(p);*/
     }
-    public void excluir(Participante p){
-        ParticipanteJpaController pjc = new ParticipanteJpaController();
+    public void excluir(CursoParticipante p){
+        /*ParticipanteJpaController pjc = new ParticipanteJpaController();
         p.setCursoParticipanteList(null);
-        pjc.remove(p);
+        pjc.remove(p);*/
     }
     
 }

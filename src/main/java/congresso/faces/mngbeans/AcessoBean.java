@@ -20,7 +20,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class AcessoAlterarBean  extends PageBean{
+public class AcessoBean  extends PageBean{
     
     private CPFConverter cpfConverter = new CPFConverter();
     private CPFValidator cpfValidator = new CPFValidator();
@@ -29,6 +29,7 @@ public class AcessoAlterarBean  extends PageBean{
     private Long cpf;
     private String email;
     private Participante participante = new Participante();
+    private String operacao;
     
     /**
      * @return the cpfConverter
@@ -127,13 +128,30 @@ public class AcessoAlterarBean  extends PageBean{
     public void setParticipante(Participante participante) {
         this.participante = participante;
     }
+
+    /**
+     * @return the operacao
+     */
+    public String getOperacao() {
+        return operacao;
+    }
+
+    /**
+     * @param operacao the operacao to set
+     */
+    public void setOperacao(String operacao) {
+        this.operacao = operacao;
+    }
     
     public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
         participante = pjc.findByCpfEmail(cpf, email);
         if(participante == null){
             return "index";
-        }        
-        return "cadastro";
+        }
+        if(operacao.equals("alterar")){
+            return "inscricao";
+        }
+        return "consulta";
     }  
 }

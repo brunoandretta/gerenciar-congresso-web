@@ -19,10 +19,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  *
  * @author Bruno
  */
-public class cadastroSteps {
+public class inscricaoSteps {
     
     private static final String BASE_URL = "http://localhost:8087";
-    private static final String CONTEXT = "/gerenciar-congresso-web/cadastro.xhtml";
+    private static final String CONTEXT = "/gerenciar-congresso-web/inscricao.xhtml";
     private static final String CONTEXT_URL = BASE_URL + CONTEXT;
     private static final String padraoIdJSF = "form1:";
 
@@ -71,7 +71,7 @@ public class cadastroSteps {
         we.click();
     }
 
-    @Given("^Estou na página de cadastro$")
+    @Given("^Estou na página de inscricao$")
     public void openHomePage() throws Throwable {
         driver.get(CONTEXT_URL);
     }

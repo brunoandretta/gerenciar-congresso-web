@@ -21,14 +21,19 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class ConsultaBean extends PageBean{
-    private Participante participante = new Participante();
+    private static boolean primeiro = true;
+    private Participante participante = new Participante();    
     private List<Curso> listaCursos = new ArrayList<Curso>();
     
     public ConsultaBean(){
-        AcessoConsultarBean acesso = (AcessoConsultarBean) getBean("acessoConsultarBean");
-        if(acesso != null && acesso.getParticipante() != null){
+        AcessoBean acesso = (AcessoBean) getBean("acessoBean");
+        InscricaoBean inscricao = (InscricaoBean) getBean("inscricaoBean");
+        if(acesso != null && acesso.getParticipante().getIdParticipante() != null){
             participante = acesso.getParticipante();            
-        }        
+        }
+        if(inscricao != null && inscricao.getParticipante().getIdParticipante() != null){
+            participante = inscricao.getParticipante();
+        }
     }
 
     /**
@@ -43,12 +48,21 @@ public class ConsultaBean extends PageBean{
      */
     public void setParticipante(Participante participante) {
         this.participante = participante;
-    }
+    } 
 
     /**
      * @return the listaCursos
      */
     public List<Curso> getListaCursos() {
+        List<CursoParticipante> listaParticipantes;
+        if(primeiro == true){
+            CursoParticipanteJpaController cpjc = new CursoParticipanteJpaController();
+            listaParticipantes = cpjc.findByParticipante(participante);
+            for(int i=0;i<listaParticipantes.size();i++){
+                listaCursos.add(listaParticipantes.get(i).getCurso());
+            }
+            primeiro = false;
+        }        
         return listaCursos;
     }
 
@@ -57,14 +71,5 @@ public class ConsultaBean extends PageBean{
      */
     public void setListaCursos(List<Curso> listaCursos) {
         this.listaCursos = listaCursos;
-    }
-    
-    private void inicializaConsulta(){
-        List<CursoParticipante> listacp = new ArrayList<CursoParticipante>();
-        CursoParticipanteJpaController cpjc = new CursoParticipanteJpaController();
-        listacp = cpjc.findByParticipante(participante);
-        for(int i=0;i < listacp.size();i++){
-            listaCursos.add(listacp.get(i).getCurso());
-        }
     }
 }

@@ -8,6 +8,7 @@
 
     <f:view>       
         <ui:insert name="metadata"/>
+        <ice:loadBundle basename="congresso.config.textos" var="texto"/>
         <h:head>
             <ui:insert name="styles"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,7 +16,7 @@
             <link href="${facesContext.externalContext.requestContextPath}/css/default.css" rel="stylesheet" type="text/css" />
             <link href="${facesContext.externalContext.requestContextPath}/css/cssLayout.css" rel="stylesheet" type="text/css" />
             <link href="${facesContext.externalContext.requestContextPath}/css/inscricao.css" rel="stylesheet" type="text/css" />
-            <title>Cadastro Congresso Web</title>
+            <title>inscricao Congresso Web</title>
         </h:head>
 
         <h:body>
@@ -38,9 +39,9 @@
                                 <li><a href="index.xhtml"><span></span>Home</a></li>
                                 <li><a href="#"><span></span>Inscrição</a>
                                     <ul>
-                                        <li><a href="cadastro.xhtml">Cadastrar</a></li>
-                                        <li><a href="acessoAlterar.xhtml">Alterar</a></li>
-                                        <li><a href="acessoConsultar.xhtml">Consultar</a></li>
+                                        <li><a href="inscricao.xhtml">Cadastrar</a></li>
+                                        <li><a href="acesso.xhtml?operacao=alterar">Alterar</a></li>
+                                        <li><a href="acesso.xhtml?operacao=consultar">Consultar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="login.xhtml"><span></span>Acesso Administrativo</a></li>                                

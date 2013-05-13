@@ -5,6 +5,7 @@
 package congresso.persistence.controller;
 
 import congresso.persistence.entity.CursoParticipante;
+import congresso.persistence.entity.CursoParticipantePK_;
 import congresso.persistence.entity.CursoParticipante_;
 import congresso.persistence.entity.Participante;
 import congresso.persistence.entity.Participante_;
@@ -33,7 +34,8 @@ public class CursoParticipanteJpaController extends JpaController{
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<CursoParticipante> cq = cb.createQuery(CursoParticipante.class);
             Root<CursoParticipante> rt = cq.from(CursoParticipante.class);
-            cq.where(cb.equal(rt.get(CursoParticipante_.participante), p));
+            cq.where(cb.equal(rt.get(CursoParticipante_.cursoParticipantePK)
+                    .get(CursoParticipantePK_.idParticipante), p.getIdParticipante()));
             TypedQuery<CursoParticipante> q = em.createQuery(cq);
             return q.getResultList();
         } finally {

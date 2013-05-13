@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ISO-8859-1' ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -37,19 +37,15 @@
     <ui:define name="content">
         <h:form id="form">
             <h1>Congresso de Desenvolvedores Web</h1>
-            <h2 style="color: black; text-align: left;font-weight: bold;font-size: 13px">Informações Gerais</h2>
+            <h2 style="color: black; text-align: left;font-weight: bold;font-size: 13px">#{texto['property.informacoes']} Gerais</h2>
             <h3 style="color: black; text-align: left; font-size: 12px">Objetivo</h3>
-            <p style="color: black; text-align: left;font-size: 12px">
-                O objetivo do sistema é auxiliar na cooperação entre os envolvidos do
-                estágio a fim de agilizar o processo de contratação de estágio pela empresa,
-                facilitar o gerenciamento dos estagiários pela universidade e orientar
-                os alunos que fazer ou irão fazer algum estágio.
+            <p style="color: black; text-align: left;font-size: 12px">                
             </p>
             <h3 style="color: black; text-align: left; font-size: 12px">Cursos Ofertados:</h3>        
             <ace:dataTable id="data" var="curso" value="#{indexBean.selecaoCurso}"
                            rows="6">
                 <ace:column id="descricao">
-                    <f:facet name="header">DESCRIÇÃO</f:facet>
+                    <f:facet name="header">#{texto['property.descricao']}</f:facet>
                     <ace:expansionToggler/>
                 </ace:column>
                 <ace:column id="id">
@@ -67,7 +63,7 @@
                     </ice:outputText>
                 </ace:column>
                 <ace:column id="horario">
-                    <f:facet name="header">HORÁRIO</f:facet>
+                    <f:facet name="header">#{texto['property.horario']}</f:facet>
                     <ice:outputText value="#{curso.horaInicio}-#{curso.horaFim}"/>                    
                 </ace:column>
                 <ace:column id="vagas">
@@ -75,7 +71,7 @@
                     #{curso.vagas}
                 </ace:column>
                 <ace:column id="valor">
-                    <f:facet name="header">PREÇO</f:facet>
+                    <f:facet name="header">#{texto['property.preco']}</f:facet>
                     <ice:outputText style="font-size: 9px" id="preco" value="#{curso.valor}">
                         <f:convertNumber type="currency" currencySymbol="R$"/>
                     </ice:outputText>
@@ -85,8 +81,8 @@
                     <ice:outputLabel style="width: 500px;text-align: left" id="out_descricao" value="#{curso.descricao}"/>
                 </ace:panelExpansion>
             </ace:dataTable>
-            <h3 style="color: black; text-align: left; font-size: 12px">Inscrição:
-                <a href="cadastro.xhtml">CLIQUE AQUI</a>
+            <h3 style="color: black; text-align: left; font-size: 12px">#{texto['property.inscricao']}
+                <a href="inscricao.xhtml">CLIQUE AQUI</a>
             </h3> 
         </h:form>
     </ui:define>  

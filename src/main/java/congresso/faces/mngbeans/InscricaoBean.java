@@ -40,13 +40,13 @@ public class InscricaoBean extends PageBean{
     private Map<Long,Boolean> checked;
     private Boolean selected;
     private boolean cadastrar;
-    private Double valorTotal;
+    private Double valorTotal;    
     
     public InscricaoBean(){
         valorTotal = 100.0;
         checked = new HashMap<Long, Boolean>();       
-        AcessoAlterarBean acesso = (AcessoAlterarBean) getBean("acessoAlterarBean");
-        if(acesso != null && acesso.getParticipante() != null){
+        AcessoBean acesso = (AcessoBean) getBean("acessoBean");
+        if(acesso != null && acesso.getParticipante().getIdParticipante() != null){
             participante = acesso.getParticipante();
             cadastrar = false;
         }else{
@@ -216,12 +216,12 @@ public class InscricaoBean extends PageBean{
         participante.setValorTotal(valorTotal);
         participante.setCursoParticipanteList(listacp);        
         pjc.persist(participante);
-        return "redirecionar";
+        return "consulta";
     }
     public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
         pjc.merge(participante);
-        return "redirecionar";
+        return "consulta";
     }
     
 }
