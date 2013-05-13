@@ -6,6 +6,9 @@
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:ace="http://www.icefaces.org/icefaces/components"
                 template="./WEB-INF/templates/layout.xhtml">  
+    <f:metadata>
+        <f:viewParam name="id" value="#{consultaBean.participante}"/>
+    </f:metadata>
        <ui:define name="styles">
         <style type="text/css">
             .titulo-form {
@@ -34,7 +37,7 @@
     <ui:define name="menu"></ui:define>
     <ui:define name="content">
         <h:form id="form">
-            <div class="titulo-form">Consulta inscricao</div>
+            <div class="titulo-form">Consulta #{texto['property.inscricao']}</div>
             <h3 style="color: black; text-align: left; font-size: 12px">Dados Cadastrais:</h3>
             <ace:dataTable id="data_participante" var="p" value="#{consultaBean.participante}" 
                            rows="5" paginator="true" paginatorPosition="bottom">                                 

@@ -6,6 +6,7 @@ package congresso.faces.mngbeans;
 
 import congresso.faces.support.PageBean;
 import congresso.persistence.controller.CursoParticipanteJpaController;
+import congresso.persistence.controller.ParticipanteJpaController;
 import congresso.persistence.entity.Curso;
 import congresso.persistence.entity.CursoParticipante;
 import congresso.persistence.entity.Participante;
@@ -22,17 +23,17 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ConsultaBean extends PageBean{
     private static boolean primeiro = true;
-    private Participante participante = new Participante();    
+    private Participante participante = new Participante();
+    private Integer idParticipante;
     private List<Curso> listaCursos = new ArrayList<Curso>();
     
     public ConsultaBean(){
-        AcessoBean acesso = (AcessoBean) getBean("acessoBean");
-        InscricaoBean inscricao = (InscricaoBean) getBean("inscricaoBean");
+        AcessoBean acesso = (AcessoBean) getBean("acessoBean");        
         if(acesso != null && acesso.getParticipante().getIdParticipante() != null){
             participante = acesso.getParticipante();            
         }
-        if(inscricao != null && inscricao.getParticipante().getIdParticipante() != null){
-            participante = inscricao.getParticipante();
+        if(idParticipante != null){
+            participante = new ParticipanteJpaController().findById(idParticipante);
         }
     }
 
@@ -49,6 +50,20 @@ public class ConsultaBean extends PageBean{
     public void setParticipante(Participante participante) {
         this.participante = participante;
     } 
+
+    /**
+     * @return the idParticipante
+     */
+    public Integer getIdParticipante() {
+        return idParticipante;
+    }
+
+    /**
+     * @param idParticipante the idParticipante to set
+     */
+    public void setIdParticipante(Integer idParticipante) {
+        this.idParticipante = idParticipante;
+    }
 
     /**
      * @return the listaCursos

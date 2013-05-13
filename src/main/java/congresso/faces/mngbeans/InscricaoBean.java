@@ -215,13 +215,13 @@ public class InscricaoBean extends PageBean{
         participante.setIdParticipante(idParticipante);
         participante.setValorTotal(valorTotal);
         participante.setCursoParticipanteList(listacp);        
-        pjc.persist(participante);
-        return "consulta";
+        pjc.persist(participante);       
+        return "consulta?id="+participante.getIdParticipante();
     }
     public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
-        pjc.merge(participante);
-        return "consulta";
+        pjc.merge(participante);        
+        return "consulta?id="+participante.getIdParticipante();
     }
     
 }

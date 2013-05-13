@@ -94,7 +94,7 @@ public class ParticipanteJpaController extends JpaController{
            em.close();
        }   
    }
-      public void remove(Participante participante){
+   public void remove(Participante participante){
        EntityManager em = getEntityManager();
        try{
            em.getTransaction().begin();
@@ -103,5 +103,15 @@ public class ParticipanteJpaController extends JpaController{
        }finally{
            em.close();
        }   
+   }
+   public Participante findById(Integer id){
+       EntityManager em = getEntityManager();
+       try{           
+           return em.find(Participante.class, id);           
+       }catch(NoResultException e){
+           return null;
+       }finally{
+           em.close();
+       }
    }
 }
