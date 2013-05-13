@@ -12,22 +12,23 @@ import congresso.faces.validator.CPFValidator;
 import congresso.persistence.controller.CursoJpaController;
 import congresso.persistence.controller.ParticipanteJpaController;
 import congresso.persistence.entity.Curso;
+import congresso.persistence.entity.CursoParticipante;
 import congresso.persistence.entity.Participante;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
-
 
 /**
  *
  * @author Bruno
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class InscricaoBean extends PageBean{
     
     private CPFConverter cpfConverter = new CPFConverter();
@@ -35,12 +36,22 @@ public class InscricaoBean extends PageBean{
     private CEPConverter cepConverter = new CEPConverter();
     private CEPValidator cepValidator = new CEPValidator();
     private Participante participante = new Participante();
-    private List<Curso> selecaoCurso = new ArrayList<Curso>();
-    private Map<Integer,Boolean> checked = new HashMap<Integer,Boolean>();
-    private boolean cadastrar;    
+    private List<Curso> selecaoCurso = new ArrayList<Curso>(); 
+    private Map<Long,Boolean> checked;
+    private Boolean selected;
+    private boolean cadastrar;
+    private Double valorTotal;
     
     public InscricaoBean(){
-        cadastrar = true;
+        valorTotal = 100.0;
+        checked = new HashMap<Long, Boolean>();       
+        AcessoAlterarBean acesso = (AcessoAlterarBean) getBean("acessoAlterarBean");
+        if(acesso != null && acesso.getParticipante() != null){
+            participante = acesso.getParticipante();
+            cadastrar = false;
+        }else{
+            cadastrar = true;
+        }        
     }
     
     /**
@@ -119,7 +130,7 @@ public class InscricaoBean extends PageBean{
         try {
             if (selecaoCurso.isEmpty()) {
                 CursoJpaController ctl = new CursoJpaController();
-                selecaoCurso = ctl.findAll();
+                selecaoCurso = ctl.findAll();                
             }
         } catch (Exception e) {
             log("", e);            
@@ -137,16 +148,18 @@ public class InscricaoBean extends PageBean{
     /**
      * @return the checked
      */
-    public Map<Integer,Boolean> getChecked() {
+    public Map<Long,Boolean> getChecked() {
         return checked;
     }
 
     /**
      * @param checked the checked to set
      */
-    public void setChecked(Map<Integer,Boolean> checked) {
+    public void setChecked(Map<Long,Boolean> checked) {
         this.checked = checked;
     }
+
+    
     /**
      * @return the cadastrar
      */
@@ -160,17 +173,55 @@ public class InscricaoBean extends PageBean{
     public void setCadastrar(boolean cadastrar) {
         this.cadastrar = cadastrar;
     }
+
+    /**
+     * @return the valorTotal
+     */
+    public Double getValorTotal() {
+        valorTotal = 100.0;
+        for(int i = 1; i <= checked.size();i++){
+            if(checked.get(Long.valueOf(i))){
+                valorTotal += 50.0;
+            }            
+        }
+        return valorTotal;
+    }
+   
     
-    public void getFormulario(String nome){
-        ParticipanteJpaController pjc = new ParticipanteJpaController();
-        participante = pjc.findByName(nome);
-        if(participante == null){
-            setCadastrar(true); 
-        }else{
-            setCadastrar(false);
+    @PostConstruct
+    public void init(){        
+        for(Curso curso : getSelecaoCurso()){
+            checked.put(curso.getIdCurso(), false);
         }
     }
-    public void cadastrar(){}
-    public void alterar(){}
+    public void selecaoChanged(ValueChangeEvent e, Long idCurso){
+        selected = (Boolean) e.getNewValue();
+        checked.put(idCurso, selected);
+    }
+    
+    public String cadastrar(){
+        ParticipanteJpaController pjc = new ParticipanteJpaController();
+        CursoJpaController cjc = new CursoJpaController();
+        List<CursoParticipante> listacp = new ArrayList<CursoParticipante>();        
+        Integer idParticipante = pjc.MaxId() + 1;
+        for(Curso curso : selecaoCurso){
+            if(checked.get(curso.getIdCurso())){
+                int numVagas = curso.getVagas() - 1;
+                curso.setVagas(numVagas);                
+                cjc.merge(curso);
+                listacp.add(new CursoParticipante(curso.getIdCurso(), idParticipante));                                
+            }
+        }
+        participante.setIdParticipante(idParticipante);
+        participante.setValorTotal(valorTotal);
+        participante.setCursoParticipanteList(listacp);        
+        pjc.persist(participante);
+        return "redirecionar";
+    }
+    public String alterar(){
+        ParticipanteJpaController pjc = new ParticipanteJpaController();
+        pjc.merge(participante);
+        return "redirecionar";
+    }
     
 }

@@ -40,4 +40,15 @@ public class CursoJpaController extends JpaController{
         }
     }
     
+    public void merge(Curso c){
+        EntityManager em = getEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.merge(c);
+            em.getTransaction().commit();
+        }finally{
+            closeNotLazy();
+        }
+    }
+    
 }

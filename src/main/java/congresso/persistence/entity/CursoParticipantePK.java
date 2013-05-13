@@ -18,9 +18,13 @@ public class CursoParticipantePK implements Serializable {
     @Column(name="id_participante")
     private Integer idParticipante;
     @Column(name="id_curso")
-    private Integer idCurso;
+    private Long idCurso;
     
     public CursoParticipantePK(){
+    }
+    public CursoParticipantePK(Long idCurso, Integer idParticipante){
+        this.idCurso = idCurso;
+        this.idParticipante = idParticipante;
     }
     /**
      * @return the idParticipante
@@ -39,14 +43,14 @@ public class CursoParticipantePK implements Serializable {
     /**
      * @return the idCurso
      */
-    public Integer getIdCurso() {
+    public Long getIdCurso() {
         return idCurso;
     }
 
     /**
      * @param idCurso the idCurso to set
      */
-    public void setIdCurso(Integer idCurso) {
+    public void setIdCurso(Long idCurso) {
         this.idCurso = idCurso;
     }
     

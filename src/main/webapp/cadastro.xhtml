@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='ISO-8859-1' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -97,8 +97,7 @@
                     <ice:outputLabel style="margin-right: -50px" for="cep" value="CEP*:"/>
                     <ace:maskedEntry id="cep" value="#{inscricaoBean.participante.cep}" mask="99999-999"
                                      size="10" required="true" label="CEP" converter="#{inscricaoBean.cepConverter}"
-                                     requiredMessage="o valor é necessário">
-                        <f:validator binding="#{inscricaoBean.cpfValidator}"/> 
+                                     requiredMessage="o valor é necessário">                         
                     </ace:maskedEntry>
                     <ice:message style="color: red" for="cep"></ice:message>
                     <ice:outputLabel style="width: 150px;margin-right: -40px" for="telefone" value="Telefone Contato*:"/> 
@@ -116,12 +115,13 @@
                 </ice:panelGroup>
             </ice:panelGroup>
             <ice:panelGroup style="text-align: left; margin-bottom: 10px; color: black" >* Campos Obrigatórios</ice:panelGroup>
-            <ice:panelGroup style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:
-            <ace:dataTable id="data" var="curso" value="#{inscricaoBean.selecaoCurso}"
+            <ice:panelGroup  rendered="#{inscricaoBean.cadastrar}" style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:                
+                <ace:dataTable id="data" var="curso" value="#{inscricaoBean.selecaoCurso}"
                            rows="6">
                 <ace:column id="selecao">
                     <f:facet name="header">SELECIONE</f:facet>
-                    <ace:checkboxButton value="#{inscricaoBean.checked[curso.idCurso]}"/>                    
+                    <ice:selectBooleanCheckbox value="#{inscricaoBean.checked[curso.idCurso]}" valueChangeListener="#{inscricaoBean.selecaoChanged(curso.idCurso)}" 
+                                               partialSubmit="true" immediate="true"/>                    
                 </ace:column>
                 <ace:column  id="descricao">
                     <f:facet name="header">DESCRIÇÃO</f:facet>
@@ -154,10 +154,13 @@
                 <ace:panelExpansion>
                     <ice:outputLabel style="width: 500px;text-align: left" id="out_descricao" value="#{curso.descricao}"/>
                 </ace:panelExpansion>
-            </ace:dataTable>                
+            </ace:dataTable>
+                <ice:outputFormat value="(VALOR TOTAL A PAGAR = R$ {0, number, 0.00})">
+                    <f:param value="#{inscricaoBean.valorTotal}"/>
+                </ice:outputFormat>
             </ice:panelGroup>
-            <ice:commandButton  id="confirmar" value="Confirmar" action="#{inscricaoBean.cadastrar()}" />
-            <ice:commandButton  id="alterar" value="Alterar" action="#{inscricaoBean.alterar()}" />
+            <ice:commandButton  rendered="#{inscricaoBean.cadastrar}" id="confirmar" value="Cadastrar" action="#{inscricaoBean.cadastrar()}" />
+            <ice:commandButton  rendered="#{!inscricaoBean.cadastrar}" id="alterar" value="Alterar" action="#{inscricaoBean.alterar()}" />
         </h:form>
     </ui:define>  
 </ui:composition> 

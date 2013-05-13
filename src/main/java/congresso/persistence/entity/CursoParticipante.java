@@ -35,6 +35,9 @@ public class CursoParticipante implements Serializable {
     
     public CursoParticipante(){
     }
+    public CursoParticipante(Long idCurso, Integer idParticipante){
+        this.cursoParticipantePK = new CursoParticipantePK(idCurso, idParticipante);
+    }
     /**
      * @return the cursoParticipantePK
      */

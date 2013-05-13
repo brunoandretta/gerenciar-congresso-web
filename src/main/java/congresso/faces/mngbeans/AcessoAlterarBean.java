@@ -6,6 +6,7 @@ package congresso.faces.mngbeans;
 
 import congresso.faces.convert.CEPConverter;
 import congresso.faces.convert.CPFConverter;
+import congresso.faces.support.PageBean;
 import congresso.faces.validator.CEPValidator;
 import congresso.faces.validator.CPFValidator;
 import congresso.persistence.controller.ParticipanteJpaController;
@@ -19,15 +20,16 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class AcessoBean {
+public class AcessoAlterarBean  extends PageBean{
     
     private CPFConverter cpfConverter = new CPFConverter();
     private CPFValidator cpfValidator = new CPFValidator();
     private CEPConverter cepConverter = new CEPConverter();
     private CEPValidator cepValidator = new CEPValidator();
+    private Long cpf;
+    private String email;
     private Participante participante = new Participante();
-    private InscricaoBean inscricao = new InscricaoBean();
-
+    
     /**
      * @return the cpfConverter
      */
@@ -85,6 +87,34 @@ public class AcessoBean {
     }
 
     /**
+     * @return the cpf
+     */
+    public Long getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * @return the participante
      */
     public Participante getParticipante() {
@@ -98,13 +128,12 @@ public class AcessoBean {
         this.participante = participante;
     }
     
-    public String acessar(){
+    public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
-        Participante part= pjc.findByCpfEmail(participante.getCpf(), participante.getEmail());
-        if(part == null){
+        participante = pjc.findByCpfEmail(cpf, email);
+        if(participante == null){
             return "index";
-        }
-        inscricao.setParticipante(part);
+        }        
         return "cadastro";
-    }
+    }  
 }

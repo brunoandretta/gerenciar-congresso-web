@@ -21,8 +21,8 @@ public class CPFConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
-        String cpf = (String) o;
-        return String.format("%09d-%02d", Long.parseLong(cpf) / 100, Long.parseLong(cpf) % 100);
+        Long cpf = (Long)o;
+        return String.format("%09d-%02d", cpf / 100, cpf % 100);
     }
     
 }

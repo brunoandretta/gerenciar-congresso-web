@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                template="./WEB-INF/templates/layout.xhtml">  
+       <ui:define name="styles">
+        <style type="text/css">
+            .titulo-form {
+                font-size: 14pt;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .iceOutLbl {
+                display: inline-block;
+                margin-left: 4px;
+                width: 100px;
+            }
+            
+            .icePnlGrp {
+                margin-top: 4px;
+            }
+            .iceMsgs {
+                color: red;    
+            }   
+            
+        </style>
+    </ui:define>
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="javascript">
+    </ui:define>
+    <ui:define name="menu">    
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form">
+            <h3 style="color: black; text-align: left; font-size: 12px">LOGIN</h3>
+            <ice:panelGroup style="text-align: left">
+            <ice:outputLabel style="margin-right: -50px;" for="cpf" value="CPF*:"/>
+              <ace:maskedEntry id="cpf" value="#{acessoConsultarBean.cpf}"  mask="999999999-99" 
+                              size="11" label="CPF" required="true" converter="#{acessoConsultarBean.cpfConverter}"
+                              requiredMessage="o valor é necessário">
+                 <f:validator binding="#{acessoConsultarBean.cpfValidator}"/>                       
+             </ace:maskedEntry><br/>           
+                <ice:outputLabel style="margin-right: -50px;" for="email" value="E-mail:*"/>
+                <ice:inputText id="email" value="#{acessoConsultarBean.email}" size="53"
+                      label="E-mail" maxlength="100" required="true"
+                     requiredMessage="o valor é necessário"/>
+                <ice:message style="color: red" for="email"></ice:message>
+            </ice:panelGroup>
+            <ice:commandButton  id="confirmar" value="Acessar" action="#{acessoConsultarBean.consultar()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>
+            

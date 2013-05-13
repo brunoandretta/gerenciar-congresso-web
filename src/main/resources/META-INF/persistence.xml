@@ -6,6 +6,7 @@
     <class>congresso.persistence.entity.Curso</class>
     <class>congresso.persistence.entity.CursoParticipante</class>
     <class>congresso.persistence.entity.Participante</class>
+    <class>congresso.persistence.entity.Usuario</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>

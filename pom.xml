@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsf.version>2.1.18</jsf.version>
         <icefaces.version>3.2.0</icefaces.version>
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
         <hibernate.core.version>4.1.9.Final</hibernate.core.version>
         <hibernate.ehcache.version>${hibernate.core.version}</hibernate.ehcache.version>
         <hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>

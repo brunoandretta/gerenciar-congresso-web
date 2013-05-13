@@ -12,6 +12,8 @@ import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,12 +33,12 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
     @NamedQuery(name = "Curso.findAll", query = "SELECT c FROM Curso c")})
 public class Curso implements Serializable{    
-    @Id
-    @Basic(optional = false)
+    @Id   
+    @Basic(optional = false)    
     @NotNull
-    @Column(name="id_curso")
-    private Integer idCurso;
-    @NotNull
+    @Column(name="id_curso")    
+    private Long idCurso;
+    @NotNull    
     private String nome;
     @NotNull
     private String descricao;
@@ -52,21 +54,21 @@ public class Curso implements Serializable{
     @Column(name="hora_fim")
     private String horaFim;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
-    private List<CursoParticipante> cursoParticipanteList;
+    private List<CursoParticipante> cursoParticipanteList;    
     
     public Curso(){
     }
     /**
      * @return the idCurso
      */
-    public Integer getIdCurso() {
+    public Long getIdCurso() {
         return idCurso;
     }
 
     /**
      * @param idCurso the idCurso to set
      */
-    public void setIdCurso(Integer idCurso) {
+    public void setIdCurso(Long idCurso) {
         this.idCurso = idCurso;
     }
 

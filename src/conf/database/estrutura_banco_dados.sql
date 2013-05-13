@@ -2,10 +2,10 @@ CREATE SEQUENCE id_participante_id_seq;
 CREATE TABLE public.participante (
     id_participante INT NOT NULL DEFAULT NEXTVAL('id_participante_id_seq'),    
     nome VARCHAR(100) NOT NULL,
-    cpf VARCHAR(11) NOT NULL,
+    cpf NUMERIC(11) NOT NULL,
     rg VARCHAR(20),
     data_nascimento DATE,
-    cep VARCHAR(10),
+    cep INT,
     endereco VARCHAR(60),
     numero VARCHAR(60),
     complemento VARCHAR(60),

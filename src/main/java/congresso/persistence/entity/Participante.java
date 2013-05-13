@@ -11,6 +11,8 @@ import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,22 +32,20 @@ import javax.validation.constraints.Size;
     @NamedQuery(name="Participante.findAll",query = "SELECT p FROM Participante p")
 })
 public class Participante implements Serializable {
-    @Id
+    @Id    
     @Column(name = "id_participante")
     private Integer idParticipante;
     @NotNull
     private String nome;
     @NotNull
     @Size(min = 1, max = 15)
-    private String cpf;
+    private Long cpf;
     @NotNull
     @Size(min = 1, max = 15)
-    private String rg;
-    @Temporal(TemporalType.DATE)
-    private Date data_nascimento;
+    private String rg; 
     @NotNull
     @Size(min = 1, max = 15)
-    private String cep;
+    private Integer cep;
     @NotNull
     @Size(min = 1, max = 50)
     private String endereco;
@@ -108,14 +108,14 @@ public class Participante implements Serializable {
     /**
      * @return the cpf
      */
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
@@ -134,30 +134,16 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return the data_nascimento
-     */
-    public Date getData_nascimento() {
-        return data_nascimento;
-    }
-
-    /**
-     * @param data_nascimento the data_nascimento to set
-     */
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
-    /**
      * @return the cep
      */
-    public String getCep() {
+    public Integer getCep() {
         return cep;
     }
 
     /**
      * @param cep the cep to set
      */
-    public void setCep(String cep) {
+    public void setCep(Integer cep) {
         this.cep = cep;
     }
 
