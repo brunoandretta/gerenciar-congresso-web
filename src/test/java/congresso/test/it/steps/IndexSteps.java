@@ -11,6 +11,7 @@ import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 /**
  *
@@ -37,6 +38,7 @@ public class IndexSteps {
     
     @Given("^Estou na página Inicial$")
     public void openHomePage() throws Throwable {
+        Thread.sleep(1000);
         driver.get(CONTEXT_URL);
     }
     
