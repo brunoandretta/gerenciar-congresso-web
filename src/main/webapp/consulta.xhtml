@@ -8,6 +8,7 @@
                 template="./WEB-INF/templates/layout.xhtml">  
     <f:metadata>
         <f:viewParam name="participante" value="#{consultaBean.idParticipante}"/>
+        <f:viewParam name="msg" value="#{consultaBean.mensagem}"/>
     </f:metadata>
        <ui:define name="styles">
         <style type="text/css">
@@ -36,8 +37,9 @@
     </ui:define>
     <ui:define name="menu"></ui:define>
     <ui:define name="content">
-        <h:form id="form">
+        <h:form id="form1">
             <div class="titulo-form">Consulta #{texto['property.inscricao']}</div>
+            <h3 style="color: red; text-align: center; font-size: 12px">#{consultaBean.mensagem}</h3><br/> 
             <h3 style="color: black; text-align: left; font-size: 12px">Dados Cadastrais:</h3>
             <ace:dataTable id="data_participante" var="p" value="#{consultaBean.participante}" 
                            rows="5" paginator="true" paginatorPosition="bottom">                                 

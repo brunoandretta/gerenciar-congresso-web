@@ -216,12 +216,14 @@ public class InscricaoBean extends PageBean{
         participante.setValorTotal(valorTotal);
         participante.setCursoParticipanteList(listacp);        
         pjc.persist(participante);       
-        return "consulta?faces-redirect=true&participante="+participante.getIdParticipante();
+        return "consulta?faces-redirect=true&participante="+participante.getIdParticipante()
+                +"&msg=Cadastro feito com Sucesso!";
     }
     public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
         pjc.merge(participante);        
-        return "consulta?faces-redirect=true&participante="+participante.getIdParticipante();
+        return "consulta?faces-redirect=true&participante="+participante.getIdParticipante()
+                +"&msg=Alteração feito com Sucesso!";
     }
     
 }

@@ -25,6 +25,7 @@ public class ConsultaBean extends PageBean{
     private static boolean primeiro = true;
     private Participante participante = new Participante();
     private Integer idParticipante;
+    private String mensagem;
     private List<Curso> listaCursos = new ArrayList<Curso>();
     
     public ConsultaBean(){
@@ -64,6 +65,20 @@ public class ConsultaBean extends PageBean{
      */
     public void setIdParticipante(Integer idParticipante) {
         this.idParticipante = idParticipante;
+    }
+
+    /**
+     * @return the mensagem
+     */
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    /**
+     * @param mensagem the mensagem to set
+     */
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     /**
