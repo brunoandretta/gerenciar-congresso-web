@@ -28,8 +28,8 @@ public class ConsultaBean extends PageBean{
     private List<Curso> listaCursos = new ArrayList<Curso>();
     
     public ConsultaBean(){
-        AcessoBean acesso = (AcessoBean) getBean("acessoBean");
-        InscricaoBean inscricao = (InscricaoBean) getBean("inscricaoBean");
+        primeiro = true;
+        AcessoBean acesso = (AcessoBean) getBean("acessoBean");        
         if(acesso != null && acesso.getParticipante().getIdParticipante() != null){
             participante = acesso.getParticipante();            
         }        

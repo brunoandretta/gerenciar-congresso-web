@@ -33,68 +33,120 @@
     </ui:define>
     <ui:define name="menu"></ui:define>
     <ui:define name="content">
-        <h:form id="form">
+        <h:form id="form1">
+            <ice:panelGroup style="text-align: left; margin-bottom: 10px"> Dados Cadastrais:
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -50px" for="nome" value="Nome*:"/>
+                    <ice:inputText id="nome" value="#{administracaoBean.participanteEdit.nome}" size="52"                                   
+                                    label="Nome" maxlength="100" required="true"
+                                   requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                        
+                    </ice:inputText>
+                    <ice:message style="color: red" for="nome"/>
+                </ice:panelGroup>                
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -50px" for="cpf" value="CPF*:"/>
+                    <ace:maskedEntry id="cpf" value="#{administracaoBean.participanteEdit.cpf}"  mask="999999999-99" 
+                                     size="11" label="CPF" required="true" converter="#{inscricaoBean.cpfConverter}"
+                                     requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                                               
+                    </ace:maskedEntry>
+                    <ice:message style="color: red" for="cpf"></ice:message>
+                    <ice:outputLabel style="margin-right: -70px;margin-left: 67px" for="rg" value="RG*:"/>
+                    <ice:inputText id="rg" value="#{administracaoBean.participanteEdit.rg}" size="11"
+                                    label="RG" maxlength="100" required="true"
+                                   requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                        
+                    </ice:inputText>
+                    <ice:message style="color: red" for="rg"></ice:message>
+                </ice:panelGroup>               
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -30px" for="rua" value="#{texto['property.endereco']}*:"/>
+                    <ice:inputText id="rua" value="#{administracaoBean.participanteEdit.endereco}" size="25"
+                          label="Endereco" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message style="color: red" for="rua"></ice:message>
+                    <ice:outputLabel style="margin-right: -40px" for="numero" value="#{texto['property.numero']}*:"/>
+                    <ice:inputText id="numero" value="#{administracaoBean.participanteEdit.numero}" size="5"
+                          label="Numero" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message  style="color: red" for="numero"></ice:message>
+                </ice:panelGroup>                
+                <ice:panelGroup>
+                    <ice:outputLabel for="complemento" value="Complemento:"/>
+                    <ice:inputText id="complemento" value="#{administracaoBean.participanteEdit.complemento}" size="10"
+                          label="Complemento" maxlength="100" required="false"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:outputLabel style="margin-right: -50px" for="bairro" value="Bairro:"/>
+                    <ice:inputText id="bairro" value="#{administracaoBean.participanteEdit.bairro}" size="16"
+                          label="Bairro" maxlength="100" required="false"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/> 
+                </ice:panelGroup>               
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -50px" for="cidade" value="Cidade*:"/>
+                    <ice:inputText id="cidade" value="#{administracaoBean.participanteEdit.cidade}" size="20"
+                          label="Cidade" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message style="color: red" for="cidade"></ice:message>
+                    <ice:outputLabel style="margin-right: -50px" for="estado" value="Estado*:"/>
+                    <ice:inputText id="estado" value="#{administracaoBean.participanteEdit.estado}" size="16"
+                          label="Estado" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message style="color: red" for="estado"></ice:message>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -50px" for="cep" value="CEP*:"/>
+                    <ace:maskedEntry id="cep" value="#{administracaoBean.participanteEdit.cep}" mask="99999-999"
+                                     size="10" required="true" label="CEP" converter="#{inscricaoBean.cepConverter}"
+                                     requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}">                         
+                    </ace:maskedEntry>
+                    <ice:message style="color: red" for="cep"></ice:message>
+                    <ice:outputLabel style="width: 150px;margin-right: -40px" for="telefone" value="Telefone Contato*:"/> 
+                    <ice:inputText id="telefone" value="#{administracaoBean.participanteEdit.telefone}" size="10"
+                          label="Telefone" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message style="color: red" for="telefone"></ice:message>
+                </ice:panelGroup>               
+                <ice:panelGroup>
+                    <ice:outputLabel style="margin-right: -50px" for="email" value="E-mail:*"/>
+                    <ice:inputText id="email" value="#{administracaoBean.participanteEdit.email}" size="53"
+                          label="E-mail" maxlength="100" required="true"
+                         requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
+                    <ice:message style="color: red" for="email"></ice:message>
+                </ice:panelGroup>
+                <ice:commandButton id="alterar" value="Alterar" action="#{administracaoBean.alterar()}" partialSubmit="true" />
+            </ice:panelGroup>
+        </h:form>        
+        <br/>
+        <h:form id="form2">
             <div class="titulo-form">Administrar Inscritos</div>
             <ice:panelGroup style="text-align: left">
-            <ice:dataTable id="data" var="p" value="#{administracaoBean.listaParticipantes}"
-                           rows="5" width="50%">
+            <ace:dataTable id="participante" var="p" value="#{administracaoBean.listaParticipantes}"
+                           rows="5" paginator="true" paginatorPosition="bottom">
+                <ace:column id="cursos">
+                    <f:facet name="header">CURSOS:</f:facet>
+                    <ace:dataTable id="curso" var="cp" value="#{p.cursoParticipanteList}">
+                        <ace:column><f:facet name="header">CURSO</f:facet>#{cp.curso.nome}</ace:column>                        
+                    </ace:dataTable>
+                </ace:column>
                 <ace:column id="nome">
                     <f:facet name="header">Nome:</f:facet>
-                    #{p.participante.nome}
+                    #{p.nome}
                 </ace:column>
                  <ace:column id="cpf">
                     <f:facet name="header">CPF:</f:facet>
-                    #{p.participante.cpf}
+                    #{p.cpf}
                 </ace:column>
                  <ace:column id="rg">
                     <f:facet name="header">R.G.:</f:facet>
-                    #{p.participante.rg}
-                </ace:column>
-                 <ace:column id="cep">
-                    <f:facet name="header">CEP:</f:facet>
-                    #{p.participante.cep}
-                </ace:column>
-                <ace:column id="endereco">
-                    <f:facet name="header">Endereço:</f:facet>
-                    #{p.participante.endereco}
-                </ace:column>
-                <ace:column id="numero">
-                    <f:facet name="header">Número:</f:facet>
-                    #{p.participante.numero}
-                </ace:column>
-                <ace:column id="complemento">
-                    <f:facet name="header">Completo:</f:facet>
-                    #{p.participante.complemento}
-                </ace:column>
-                <ace:column id="estado">
-                    <f:facet name="header">Estado:</f:facet>
-                    #{p.participante.estado}
-                </ace:column>
-                <ace:column id="cidade">
-                    <f:facet name="header">Cidade:</f:facet>
-                    #{p.participante.cidade}
-                </ace:column>
-                <ace:column id="bairro">
-                    <f:facet name="header">Bairro:</f:facet>
-                    #{p.participante.bairro}
-                </ace:column>
-                <ace:column id="email">
-                    <f:facet name="header">E-mail:</f:facet>
-                    #{p.participante.email}
-                </ace:column>
-                <ace:column id="telefone">
-                    <f:facet name="header">Telefone:</f:facet>
-                    #{p.participante.telefone}
-                </ace:column>
+                    #{p.rg}
+                </ace:column>            
                 <ace:column id="alterar">
-                    <f:facet name="header">Alterar</f:facet>
-                    <ice:commandButton value="Alterar" action="#{administracaoBean.alterar(p)}" partialSubmit="true"/>
+                    <f:facet name="header">Editar</f:facet>
+                    <ice:commandButton value="Editar" action="#{administracaoBean.editar(p)}" partialSubmit="true"/>
                 </ace:column>
                 <ace:column id="excluir">
                     <f:facet name="header">Excluir:</f:facet>
                     <ice:commandButton value="Excluir" action="#{administracaoBean.excluir(p)}" partialSubmit="true"/>
-                </ace:column>
-            </ice:dataTable>
+                </ace:column>              
+            </ace:dataTable>               
             </ice:panelGroup>
         </h:form>
     </ui:define>

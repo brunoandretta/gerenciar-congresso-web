@@ -203,7 +203,7 @@ public class InscricaoBean extends PageBean{
         ParticipanteJpaController pjc = new ParticipanteJpaController();
         CursoJpaController cjc = new CursoJpaController();
         List<CursoParticipante> listacp = new ArrayList<CursoParticipante>();        
-        Integer idParticipante = pjc.MaxId() + 1;
+        Integer idParticipante = pjc.MaxId() == null ? 1 : pjc.MaxId() + 1;
         for(Curso curso : selecaoCurso){
             if(checked.get(curso.getIdCurso())){
                 int numVagas = curso.getVagas() - 1;

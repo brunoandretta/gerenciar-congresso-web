@@ -4,6 +4,7 @@
  */
 package congresso.faces.mngbeans;
 
+import congresso.persistence.controller.CursoJpaController;
 import congresso.persistence.controller.CursoParticipanteJpaController;
 import congresso.persistence.controller.ParticipanteJpaController;
 import congresso.persistence.entity.CursoParticipante;
@@ -20,37 +21,63 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class AdministracaoBean {
-    private List<CursoParticipante> listaParticipantes = new ArrayList<CursoParticipante>();
+    private List<Participante> listaParticipantes = new ArrayList<Participante>(); 
+    private Participante participanteEdit = new Participante();
     
     public AdministracaoBean(){
     
     }
-
     /**
      * @return the listaParticipantes
      */
-    public List<CursoParticipante> getListaParticipantes() {
+    public List<Participante> getListaParticipantes() {
         ParticipanteJpaController pjc = new ParticipanteJpaController();
-        CursoParticipanteJpaController cpjc = new CursoParticipanteJpaController();
-        listaParticipantes = cpjc.findAll();               
+        listaParticipantes = pjc.findAll();
+        for(int i=0;i<listaParticipantes.size();i++){
+            listaParticipantes.get(i)
+            .setCursoParticipanteList(new CursoParticipanteJpaController()
+            .findByParticipante(listaParticipantes.get(i)));
+        }
         return listaParticipantes;
     }
 
     /**
      * @param listaParticipantes the listaParticipantes to set
      */
-    public void setListaParticipantes(List<CursoParticipante> listaParticipantes) {
+    public void setListaParticipantes(List<Participante> listaParticipantes) {
         this.listaParticipantes = listaParticipantes;
     }
-    
-    public void alterar(CursoParticipante p){
-        /*ParticipanteJpaController pjc = new ParticipanteJpaController();
-        pjc.merge(p);*/
+
+    /**
+     * @return the participanteEdit
+     */
+    public Participante getParticipanteEdit() {
+        return participanteEdit;
     }
-    public void excluir(CursoParticipante p){
-        /*ParticipanteJpaController pjc = new ParticipanteJpaController();
-        p.setCursoParticipanteList(null);
-        pjc.remove(p);*/
+
+    /**
+     * @param participanteEdit the participanteEdit to set
+     */
+    public void setParticipanteEdit(Participante participanteEdit) {
+        this.participanteEdit = participanteEdit;
     }
     
+    public void alterar(){
+        ParticipanteJpaController pjc = new ParticipanteJpaController();
+        pjc.merge(participanteEdit);
+    }
+    public void excluir(Participante p){
+        ParticipanteJpaController pjc = new ParticipanteJpaController();
+        CursoParticipanteJpaController cpjc = new CursoParticipanteJpaController();
+        CursoJpaController cjc = new CursoJpaController();
+        for(CursoParticipante cp : p.getCursoParticipanteList()){
+            int numVagas = cp.getCurso().getVagas() + 1;
+            cp.getCurso().setVagas(numVagas);
+            cjc.merge(cp.getCurso());            
+        }
+        pjc.remove(p);
+    }
+    public void editar(Participante p){
+        participanteEdit = p;
+    }    
 }
