@@ -28,19 +28,20 @@ public class ConsultaBean extends PageBean{
     private List<Curso> listaCursos = new ArrayList<Curso>();
     
     public ConsultaBean(){
-        AcessoBean acesso = (AcessoBean) getBean("acessoBean");        
+        AcessoBean acesso = (AcessoBean) getBean("acessoBean");
+        InscricaoBean inscricao = (InscricaoBean) getBean("inscricaoBean");
         if(acesso != null && acesso.getParticipante().getIdParticipante() != null){
             participante = acesso.getParticipante();            
-        }
-        if(idParticipante != null){
-            participante = new ParticipanteJpaController().findById(idParticipante);
-        }
+        }        
     }
 
     /**
      * @return the participante
      */
     public Participante getParticipante() {
+        if(idParticipante != null){
+            participante = new ParticipanteJpaController().findById(idParticipante);
+        }
         return participante;
     }
 
@@ -54,7 +55,7 @@ public class ConsultaBean extends PageBean{
     /**
      * @return the idParticipante
      */
-    public Integer getIdParticipante() {
+    public Integer getIdParticipante() {        
         return idParticipante;
     }
 

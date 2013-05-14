@@ -115,7 +115,7 @@
                 </ice:panelGroup>
             </ice:panelGroup>
             <ice:panelGroup style="text-align: left; margin-bottom: 10px; color: black" >* Campos #{texto['property.obrigatorios']}</ice:panelGroup>
-            <ice:panelGroup  style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:                
+            <ice:panelGroup rendered="#{inscricaoBean.cadastrar}" style="text-align: left; margin-bottom: 10px;"> Cursos Ofertados:                
                 <ace:dataTable id="data" var="curso" value="#{inscricaoBean.selecaoCurso}"
                                rows="6" rendered="#{inscricaoBean.cadastrar}">
                 <ace:column id="selecao">
