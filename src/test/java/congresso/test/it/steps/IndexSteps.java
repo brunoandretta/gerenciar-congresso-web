@@ -17,10 +17,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  *
  * @author Bruno
  */
-public class IndexSteps {
-    private static final String BASE_URL = "http://localhost:8087";
-    private static final String CONTEXT = "/gerenciar-congresso-web/";
-    private static final String CONTEXT_URL = BASE_URL + CONTEXT;
+public class IndexSteps {    
+    private static final String CONTEXT_URL = "http://localhost:8087/gerenciar-congresso-web/";
     private static final String form1 = "form1:";
     
     private static WebDriver driver;
@@ -38,7 +36,6 @@ public class IndexSteps {
     
     @Given("^Estou na página Inicial$")
     public void openHomePage() throws Throwable {
-        Thread.sleep(1000);
         driver.get(CONTEXT_URL);
     }
     
