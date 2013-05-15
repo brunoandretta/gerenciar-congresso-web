@@ -33,7 +33,7 @@
     </ui:define>
     <ui:define name="menu"></ui:define>
     <ui:define name="content">
-        <h:form id="form1">
+        <h:form id="form1" prependId="false">
             <ice:panelGroup style="text-align: left; margin-bottom: 10px"> Dados Cadastrais:
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -50px" for="nome" value="Nome*:"/>
@@ -59,7 +59,7 @@
                 </ice:panelGroup>               
                 <ice:panelGroup>
                     <ice:outputLabel style="margin-right: -30px" for="rua" value="#{texto['property.endereco']}*:"/>
-                    <ice:inputText id="rua" value="#{administracaoBean.participanteEdit.endereco}" size="25"
+                    <ice:inputText id="endereco" value="#{administracaoBean.participanteEdit.endereco}" size="25"
                           label="Endereco" maxlength="100" required="true"
                          requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="rua"></ice:message>
@@ -115,7 +115,7 @@
             </ice:panelGroup>
         </h:form>        
         <br/>
-        <h:form id="form2">
+        <h:form id="form2" prependId="false">
             <div class="titulo-form">Administrar Inscritos</div>
             <ice:panelGroup style="text-align: left">
             <ace:dataTable id="participante" var="p" value="#{administracaoBean.listaParticipantes}"
@@ -138,13 +138,13 @@
                     <f:facet name="header">R.G.:</f:facet>
                     #{p.rg}
                 </ace:column>            
-                <ace:column id="alterar">
+                <ace:column id="coluna_alterar">
                     <f:facet name="header">Editar</f:facet>
-                    <ice:commandButton value="Editar" action="#{administracaoBean.editar(p)}" partialSubmit="true"/>
+                    <ice:commandButton id="editar" value="Editar" action="#{administracaoBean.editar(p)}" partialSubmit="true"/>
                 </ace:column>
-                <ace:column id="excluir">
+                <ace:column id="coluna_excluir">
                     <f:facet name="header">Excluir:</f:facet>
-                    <ice:commandButton value="Excluir" action="#{administracaoBean.excluir(p)}" partialSubmit="true"/>
+                    <ice:commandButton id="excluir" value="Excluir" action="#{administracaoBean.excluir(p)}" partialSubmit="true"/>
                 </ace:column>              
             </ace:dataTable>               
             </ice:panelGroup>

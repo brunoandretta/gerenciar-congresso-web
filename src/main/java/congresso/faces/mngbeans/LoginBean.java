@@ -22,6 +22,7 @@ public class LoginBean extends PageBean{
     private String senha;
     private String usuario;
     private Usuario user = new Usuario();
+    private Boolean invalido;
 
     /**
      * @return the senha
@@ -64,11 +65,26 @@ public class LoginBean extends PageBean{
     public void setUser(Usuario user) {
         this.user = user;
     }
+
+    /**
+     * @return the invalido
+     */
+    public Boolean getInvalido() {
+        return invalido;
+    }
+
+    /**
+     * @param invalido the invalido to set
+     */
+    public void setInvalido(Boolean invalido) {
+        this.invalido = invalido;
+    }
     public String consultar(){
         UsuarioJpaController ujc = new UsuarioJpaController();
         user = ujc.findByusuarioSenha(usuario, senha);
         if(user == null){
-            return "index";
+            invalido = true;
+            return "";
         }        
         return "administracao";
     }

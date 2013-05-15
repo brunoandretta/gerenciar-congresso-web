@@ -29,7 +29,8 @@ public class AcessoBean  extends PageBean{
     private Long cpf;
     private String email;
     private Participante participante = new Participante();
-    private String operacao;
+    private static String operacao;
+    private Boolean invalido;
     
     /**
      * @return the cpfConverter
@@ -142,13 +143,31 @@ public class AcessoBean  extends PageBean{
     public void setOperacao(String operacao) {
         this.operacao = operacao;
     }
+
+    /**
+     * @return the invalido
+     */
+    public Boolean getInvalido() {
+        return invalido;
+    }
+
+    /**
+     * @param invalido the invalido to set
+     */
+    public void setInvalido(Boolean invalido) {
+        this.invalido = invalido;
+    }
+
+
+ 
     
     public String alterar(){
         ParticipanteJpaController pjc = new ParticipanteJpaController();
         participante = pjc.findByCpfEmail(cpf, email);
         if(participante == null){
-            return "index";
-        }
+            invalido = true;            
+            return "";
+        }        
         if(operacao.equals("alterar")){
             return "inscricao";
         }

@@ -33,7 +33,7 @@
     </ui:define>
     <ui:define name="menu"></ui:define>    
     <ui:define name="content">
-        <h:form id="form1">
+        <h:form id="form1" prependId="false">
             <div class="titulo-form">#{texto['property.formulario']}</div>
             <ice:panelGroup style="text-align: left; margin-bottom: 10px"> Dados Cadastrais:
                 <ice:panelGroup>
@@ -60,8 +60,8 @@
                     <ice:message style="color: red" for="rg"></ice:message>
                 </ice:panelGroup>               
                 <ice:panelGroup>
-                    <ice:outputLabel style="margin-right: -30px" for="rua" value="#{texto['property.endereco']}*:"/>
-                    <ice:inputText id="rua" value="#{inscricaoBean.participante.endereco}" size="25"
+                    <ice:outputLabel style="margin-right: -30px" for="endereco" value="#{texto['property.endereco']}*:"/>
+                    <ice:inputText id="endereco" value="#{inscricaoBean.participante.endereco}" size="25"
                           label="Endereco" maxlength="100" required="true"
                          requiredMessage="o valor #{texto['property.e']} #{texto['property.necessario']}"/>
                     <ice:message style="color: red" for="rua"></ice:message>
@@ -120,7 +120,7 @@
                                rows="6" rendered="#{inscricaoBean.cadastrar}">
                 <ace:column id="selecao">
                     <f:facet name="header">SELECIONE</f:facet>
-                    <ice:selectBooleanCheckbox value="#{inscricaoBean.checked[curso.idCurso]}" partialSubmit="true" />                    
+                    <ice:selectBooleanCheckbox id="selcurso" value="#{inscricaoBean.checked[curso.idCurso]}" partialSubmit="true" />                    
                 </ace:column>
                 <ace:column  id="descricao">
                     <f:facet name="header">#{texto['property.descricao']}</f:facet>
@@ -158,7 +158,7 @@
                     <f:param value="#{inscricaoBean.valorTotal}"/>
                 </ice:outputFormat>
             </ice:panelGroup>
-            <ice:commandButton  rendered="#{inscricaoBean.cadastrar}" id="confirmar" value="Cadastrar" action="#{inscricaoBean.cadastrar()}" />
+            <ice:commandButton  rendered="#{inscricaoBean.cadastrar}" id="cadastrar" value="Cadastrar" action="#{inscricaoBean.cadastrar()}" />
             <ice:commandButton  rendered="#{!inscricaoBean.cadastrar}" id="alterar" value="Alterar" action="#{inscricaoBean.alterar()}" />
         </h:form>
     </ui:define>  

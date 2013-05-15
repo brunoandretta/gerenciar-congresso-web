@@ -7,7 +7,7 @@
                 xmlns:ace="http://www.icefaces.org/icefaces/components"
                 template="./WEB-INF/templates/layout.xhtml">  
     <f:metadata>
-        <f:viewParam name="operacao" value="#{acessoBean.operacao}"/>
+        <f:viewParam name="operacao" value="#{acessoBean.operacao}"/>        
     </f:metadata>
        <ui:define name="styles">
         <style type="text/css">
@@ -38,7 +38,7 @@
     <ui:define name="menu">    
     </ui:define>
     <ui:define name="content">
-        <h:form id="form1">
+        <h:form id="form1" prependId="false">
             <h3 style="color: black; text-align: left; font-size: 12px">LOGIN</h3>
             <ice:panelGroup style="text-align: left">
             <ice:outputLabel style="margin-right: -50px;" for="cpf" value="CPF*:"/>
@@ -53,7 +53,10 @@
                      requiredMessage="o valor é necessário"/>
                 <ice:message style="color: red" for="email"></ice:message>
             </ice:panelGroup>
-            <ice:commandButton  id="confirmar" value="Acessar" action="#{acessoBean.alterar}" />
+            <ice:commandButton  id="acessar" value="Acessar" action="#{acessoBean.alterar}" partialSubmit="true"/>
+            <ice:panelGroup>
+                <ice:outputLabel style="color: red;width: 100px;" rendered="#{acessoBean.invalido}" id="mensagem" value="cpf e/ou e-mail incorretos!"/>
+            </ice:panelGroup>
         </h:form>
     </ui:define>
 </ui:composition>
