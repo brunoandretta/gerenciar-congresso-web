@@ -6,13 +6,12 @@ Feature: Administrar do Participante no Congresso
         When Eu navego para a página "/administracao.xhtml"        
         And Eu clico no botao "participante:1:editar"
         And Eu preencho "cpf" com "96147185527"
-        And Eu clico no botao "alterar"
-        Then Eu poderia ver "96147185527"
-        Then Eu poderia ver "joaods@gmail.com"
+        And Eu clico no botao "alterar"        
+        Then Eu poderia ver "Administrar"
 
     Scenario:  Administrador exclui um participante
         When Eu navego para a página "/administracao.xhtml"        
         And Eu clico no botao "participante:1:excluir"
-        Then Eu poderi nao poderia ver "participante:1:excluir"
+        Then Eu nao poderia ver "Administrar"
 
         

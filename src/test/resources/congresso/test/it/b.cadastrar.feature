@@ -28,7 +28,6 @@ Feature: Inscrição do Participante no Congresso
         And Eu preencho "cep" com "81230400"
         And Eu preencho "telefone" com "04191843176"
         And Eu preencho "email" com "joaods@gmail.com"
-        And Eu seleciono a "1"ª opção do checkbox "selcurso"
-        And Eu seleciono a "3"ª opção do checkbox "selcurso"
+        And Eu seleciono a "1"ª opção do checkbox "selcurso"       
         And Eu clico no botao "cadastrar"
         Then Eu poderia ver "Cadastro feito com Sucesso!" 

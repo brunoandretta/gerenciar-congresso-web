@@ -25,7 +25,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class CongressoSteps {    
     private static final String CONTEXT_URL = "http://localhost:8087/gerenciar-congresso-web";   
-    private static WebDriver driver;   
+    private static WebDriver driver;
+    private static String pagina;
     
    @Before
     public static void before() {
@@ -38,8 +39,9 @@ public class CongressoSteps {
         driver.quit();       
     }
     @When("^Eu navego para a página \"([^\"]*)\"$")
-    public void navigateTo(String text) throws Throwable {        
-        driver.get(CONTEXT_URL + text);
+    public void navigateTo(String text) throws Throwable {
+        pagina = CONTEXT_URL + text;
+        driver.get(pagina);
     }
     
     @Given("^Estou na página Inicial$")
@@ -54,7 +56,7 @@ public class CongressoSteps {
         Assert.assertTrue("Source: " + source, source.contains(text));
     }
     
-    @Then("^Eu poderia nao poderia ver \"([^\"]*)\"$")
+    @Then("^Eu nao poderia ver \"([^\"]*)\"$")
     public void shouldNotSee(String text) throws Throwable {
         Thread.sleep(1000);
         String source = driver.getPageSource();
@@ -81,8 +83,13 @@ public class CongressoSteps {
     public void click(String name) throws Throwable {
         WebElement we = driver.findElement(By.id(name));
         WebElement submit = driver.findElement(By.id("form1"));
-        we.click();        
-        submit.submit();        
+        we.click();
+        if(pagina.equals("/administracao.xhtml")){
+            WebElement submit2 = driver.findElement(By.id("form2"));
+            submit2.submit();
+            Thread.sleep(5000);
+        }
+        submit.submit();                
         Thread.sleep(2000);
     }
     
